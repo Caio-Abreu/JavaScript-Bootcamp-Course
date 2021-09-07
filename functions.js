@@ -213,7 +213,7 @@ const doubles2 = numbers.map(x =>{
 
 const doubles3 = numbers.map(x => x * 2);
 
-// Array.find
+// Array.find, will find in the interable if there is something especific
 
 console.log(words.find(word => {
     return word.includes('d');
@@ -226,15 +226,15 @@ console.log(books.find(b =>(
 // Filter
 
 // Will print on console only odd numbers
-console.log(numbers.filter(n => n % 2 === 1))
+console.log(numbers.filter(n => n % 2 === 1));
 // evens numbers
-console.log(numbers.filter(n => n % 2 === 0))
+console.log(numbers.filter(n => n % 2 === 0));
 
-console.log(numbers.filter(n => n > 25))
+console.log(numbers.filter(n => n > 25));
 
 // Just books with 4.3+ of rating
-console.log(books.filter(n => n.rating > 4.3 ))
-console.log('-------------------------------------------------------------------')
+console.log(books.filter(n => n.rating > 4.3 ));
+console.log('-------------------------------------------------------------------');
 const query = '';
 
 const result = books.filter(book => {
@@ -242,3 +242,80 @@ const result = books.filter(book => {
     return title.includes(query.toLowerCase());
 })
 console.log(result);
+
+// Some & every
+
+const words2 = ['dog','dig','log','bag','wag'];
+
+// Will return true or false 
+console.log(words2.every(word => word.length === 3));
+
+// Check if the last letter is 'g'
+console.log(words2.every(word =>{
+    const last = word.length -1;
+    return word[last] === 'g';
+}))
+
+// Some is similar but if there is one element True will return True
+console.log(words2.some(word => word[0] === 'd'));
+console.log(words2.every(word => word[0] === 'd'));
+
+// Check if all the books have at least rating > 3.5
+console.log(books.every(book => book.rating > 3.5));
+console.log(books.some(book => book.rating > 4.3));
+
+// Sort
+const prices = [400.5, 3000, 99.99, 35.99, 12.00, 9500];
+
+console.log(prices.sort());
+
+// How to put in a crescent form
+console.log(prices.sort((a, b) => a - b));
+// How to put in a decrescent form
+console.log(prices.sort((a, b) => b - a));
+
+// The same thing but ordening by the rating
+console.log(books.sort((a, b) => a.rating - b.rating));
+console.log(books.sort((a, b) => b.rating - a.rating));
+
+// Reduce
+console.log(numbers.reduce((total,curValue) => {
+    return total *curValue;
+}));
+
+// Will return the max number in the array
+// console.log(numbers.reduce((max, currentValue) => {
+//     if(currentValue > max) return currentValue;
+//     return max;
+// }));
+
+// Return the max value
+console.log(numbers.reduce((max, currentValue) => {
+    return Math.max(max, currentValue);
+}));
+// Return the min value
+console.log(numbers.reduce((min, currentValue) => {
+    return Math.min(min, currentValue);
+}));
+
+const votes = ['y','y','y','n','y','n','n','n','y','y','y','n','n','y','n'];
+// console.log(votes.reduce((tally, val) => {
+//     if(tally[val]){
+//         tally[val]++;    
+//     } else {
+//         tally[val] = 1;
+//     }
+//     return tally;
+// }, {}))
+
+console.log(votes.reduce((tally, val) => {
+    tally[val] = (tally[val] || 0) + 1;
+    return tally;
+}, {}))
+
+console.log(books.reduce((groupedBooks, book) => {
+    const key = Math.floor(book.rating);
+    if(!groupedBooks[key]) groupedBooks[key] = [];
+    groupedBooks[key].push(book);
+    return groupedBooks;
+}, {}))
