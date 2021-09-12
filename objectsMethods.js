@@ -135,54 +135,119 @@ const annoyer = {
 // const card1 = drawCard(myDeck);
 // console.log(card1);
 
-const myDeck = {
-    deck: [],
-    drawCards: [],
-    suits: ['hearts','diamonds','spades','clubs'],
-    values: '2,3,4,5,6,7,8,9,10,J,Q,K,A',
-    initializeDeck(){
-        const {suits,
-            values,
-            deck
-        } = this;
-        for(let value of values.split(',')) {
-            for (let suit of suits) {
-                deck.push({
-                    value,
-                    suit
-                })
+console.log('-------------------------------------------------------');
+// const myDeck = {
+//     deck: [],
+//     drawCards: [],
+//     suits: ['hearts','diamonds','spades','clubs'],
+//     values: '2,3,4,5,6,7,8,9,10,J,Q,K,A',
+//     initializeDeck(){
+//         const {suits,
+//             values,
+//             deck
+//         } = this;
+//         for(let value of values.split(',')) {
+//             for (let suit of suits) {
+//                 deck.push({
+//                     value,
+//                     suit
+//                 })
+//             }
+//         }
+//         return deck;
+//     },
+//     drawCard() {
+//         const card = this.deck.pop()
+//         this.drawCards.push(card);
+//         return card;
+//     },
+//     drawMultiple(numCards){
+//         const cards = [];
+//         for (let i = 0; i < numCards; i++){
+//             cards.push(this.drawCard());
+//         }
+//         return cards;
+//     },
+//     shuffle() {
+//         const {
+//             deck
+//         } = this;
+//         // Loop over array backwars
+//         for (let i = deck.length - 1; i > 0; i--) {
+//             // Pick random index before current element
+//             let j = Math.floor(Math.random() * (i+1));
+//             // Then swap
+//             [deck[i], deck[j]] = [deck[j], deck[i]];
+//         }
+//     }
+// }
+
+
+// And how to make another decks, just put in a function 
+
+const makeDeck = () => {
+    return {
+        deck: [],
+        drawCards: [],
+        suits: ['hearts','diamonds','spades','clubs'],
+        values: '2,3,4,5,6,7,8,9,10,J,Q,K,A',
+        initializeDeck(){
+            const {suits,
+                values,
+                deck
+            } = this;
+            for(let value of values.split(',')) {
+                for (let suit of suits) {
+                    deck.push({
+                        value,
+                        suit
+                    })
+                }
             }
-        }
-        return deck;
-    },
-    drawCard() {
-        const card = this.deck.pop()
-        this.drawCards.push(card);
-        return card;
-    },
-    drawMultiple(numCards){
-        const cards = [];
-        for (let i = 0; i < numCards; i++){
-            cards.push(this.drawCard());
-        }
-        return cards;
-    },
-    shuffle() {
-        const {
-            deck
-        } = this;
-        // Loop over array backwars
-        for (let i = deck.length - 1; i > 0; i--) {
-            // Pick random index before current element
-            let j = Math.floor(Math.random() * (i+1));
-            // Then swap
-            [deck[i], deck[j]] = [deck[j], deck[i]];
+            return deck;
+        },
+        drawCard() {
+            const card = this.deck.pop()
+            this.drawCards.push(card);
+            return card;
+        },
+        drawMultiple(numCards){
+            const cards = [];
+            for (let i = 0; i < numCards; i++){
+                cards.push(this.drawCard());
+            }
+            return cards;
+        },
+        shuffle() {
+            const {
+                deck
+            } = this;
+            // Loop over array backwars
+            for (let i = deck.length - 1; i > 0; i--) {
+                // Pick random index before current element
+                let j = Math.floor(Math.random() * (i+1));
+                // Then swap
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
         }
     }
 }
 
+const myDeck = makeDeck();
 console.log(myDeck.initializeDeck());
 console.log(myDeck.deck);
 console.log(myDeck.shuffle());
 console.log('-------------------------------------------------------');
 console.log(myDeck.deck);
+
+console.log('-------------------------------------------------------');
+
+const myDeck2 = makeDeck();
+console.log(myDeck2.initializeDeck());
+console.log(myDeck2.deck);
+
+console.log('-------------------------------------------------------');
+
+const myDeck3 = makeDeck();
+console.log(myDeck3.initializeDeck());
+console.log(myDeck3.deck);
